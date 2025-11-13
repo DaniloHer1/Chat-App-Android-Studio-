@@ -62,18 +62,14 @@ public class LoginActivity extends AppCompatActivity {
         signInLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-                    Log.d("LOGIN", "📥 Launcher ejecutado! ResultCode: " + result.getResultCode());
-                    Toast.makeText(this, "📥 Resultado recibido: " + result.getResultCode(), Toast.LENGTH_LONG).show();
 
                     if (result.getResultCode() == RESULT_OK) {
-                        Log.d("LOGIN", "✅ ResultCode es OK");
-                        Toast.makeText(this, "✅ Result OK, procesando...", Toast.LENGTH_LONG).show();
+                        Log.d("LOGIN", "ResultCode es OK");
                         Intent data = result.getData();
                         manejarResultadoGoogleSignIn(data);
                     } else {
 
-                        Log.e("LOGIN", "❌ ResultCode NO es OK: " + result.getResultCode());
-                        Toast.makeText(this, "❌ Login cancelado o falló", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Login cancelado o falló", Toast.LENGTH_LONG).show();
                         ocultarProgreso();
                     }
                 }
@@ -170,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
     private void verificarSesion() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if (currentUser != null) {
+        if (currentUser == null) {
             // Usuario ya está logueado, ir directamente a MainActivity
             irAHomeActivity();
         }
