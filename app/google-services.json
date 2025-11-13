@@ -14,11 +14,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "420892615485-1es4vak9uq0ev3pmltkk46hf0cd09hgg.apps.googleusercontent.com",
+          "client_id": "420892615485-i3l1kql1aq5kr2nndnfii953juqhofml.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "daniel.chatapp",
-            "certificate_hash": "e555b527f00163fda153621091fa6acdf4c3c318"
+            "certificate_hash": "4adb54f6b2b978e13bf4d7b37fce0b348d28450e"
           }
         },
         {
