@@ -149,7 +149,7 @@ public class LoginActivity extends AppCompatActivity {
         bd.collection("users")
                 .document(firebaseUser.getUid())
                 .set(user)
-                .addOnSuccessListener(voihd->{
+                .addOnSuccessListener(aVoid->{
                    // Usuario guardado correctamente
                     Toast.makeText(this, "¡Bienvenido " + user.getDisplayName() + "!",
                             Toast.LENGTH_SHORT).show();
@@ -166,7 +166,7 @@ public class LoginActivity extends AppCompatActivity {
     private void verificarSesion() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if (currentUser == null) {
+        if (currentUser != null) {
             // Usuario ya está logueado, ir directamente a MainActivity
             irAHomeActivity();
         }

@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity {
         bd = FirebaseFirestore.getInstance();
         currentUser = mAuth.getCurrentUser();
 
-        if (currentUser != null) {
+        if (currentUser == null) {
             irALogin();
             return;
         }
