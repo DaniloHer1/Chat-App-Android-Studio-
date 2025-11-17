@@ -1,41 +1,33 @@
 {
   "project_info": {
-    "project_number": "420892615485",
-    "project_id": "app-chat-9b806",
-    "storage_bucket": "app-chat-9b806.firebasestorage.app"
+    "project_number": "673180168558",
+    "project_id": "chat-app-ef9db",
+    "storage_bucket": "chat-app-ef9db.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:420892615485:android:bb98abd60e340cc33a5b54",
+        "mobilesdk_app_id": "1:673180168558:android:93ff9ab55ce949bcdd517f",
         "android_client_info": {
           "package_name": "daniel.chatapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "420892615485-i3l1kql1aq5kr2nndnfii953juqhofml.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "daniel.chatapp",
-            "certificate_hash": "4adb54f6b2b978e13bf4d7b37fce0b348d28450e"
-          }
-        },
-        {
-          "client_id": "420892615485-vco03p9fm9uuj0bsquo5divrbj173npp.apps.googleusercontent.com",
+          "client_id": "673180168558-c4fdvo0slui60b4mhjcr8vou1itrdmau.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCY4BJYcGY7FzdxG-VU_M7M7U-Tlth9NLk"
+          "current_key": "AIzaSyCMOVy4kVnChaOahht7cE_DQddMRpEmH2E"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "420892615485-vco03p9fm9uuj0bsquo5divrbj173npp.apps.googleusercontent.com",
+              "client_id": "673180168558-c4fdvo0slui60b4mhjcr8vou1itrdmau.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

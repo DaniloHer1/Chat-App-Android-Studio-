@@ -83,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void configurarGoogleSignIn() {
 
-        String clientId = "420892615485-vco03p9fm9uuj0bsquo5divrbj173npp.apps.googleusercontent.com";
+        String clientId = "673180168558-c4fdvo0slui60b4mhjcr8vou1itrdmau.apps.googleusercontent.com";
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(clientId)
