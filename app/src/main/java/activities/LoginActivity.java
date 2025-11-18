@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseFirestore bd;
 
+
     // para permitir el Sign-In de Google
 
     private GoogleSignInClient googleSignInClient;
@@ -62,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
         signInLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 result -> {
-
                     if (result.getResultCode() == RESULT_OK) {
                         Log.d("LOGIN", "ResultCode es OK");
                         Intent data = result.getData();
@@ -120,24 +120,34 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void autenticarConFirebase(GoogleSignInAccount account) {
+
+
         // Crear credencial de Firebase con el token de Google
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        Log.d("LOGIN", "Credencial creada correctamente");
 
         // Autenticar en Firebase
         mAuth.signInWithCredential(credential).addOnCompleteListener(this, task -> {
+            Log.d("LOGIN", "signInWithCredential completado");
+
             if (task.isSuccessful()) {
-                // Login exitoso
+                Log.d("LOGIN", "Autenticación Firebase EXITOSA");
                 FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                Log.d("LOGIN", "FirebaseUser UID: " + firebaseUser.getUid());
                 guardarUsuarioEnFirestore(firebaseUser, account);
             } else {
-                // Login no exitoso
-                Toast.makeText(this, "Error de autenticacion en FireBase", Toast.LENGTH_LONG).show();
+                Log.e("LOGIN", "✗ Error en autenticación Firebase");
+                Log.e("LOGIN", "Error: " + task.getException());
+                Toast.makeText(this, "Error de autenticacion en FireBase: " + task.getException(),
+                        Toast.LENGTH_LONG).show();
                 ocultarProgreso();
             }
         });
     }
 
     private void guardarUsuarioEnFirestore(FirebaseUser firebaseUser, GoogleSignInAccount account) {
+
+
         User user = new User(
                 firebaseUser.getUid(),
                 firebaseUser.getEmail(),
@@ -145,19 +155,18 @@ public class LoginActivity extends AppCompatActivity {
                 account.getPhotoUrl() != null ? account.getPhotoUrl().toString() : ""
         );
 
-        // Guardar en Firestore (colección "users", documento con el UID del usuario)
+
+        // Guardar en Firestore
         bd.collection("users")
                 .document(firebaseUser.getUid())
                 .set(user)
-                .addOnSuccessListener(aVoid->{
-                   // Usuario guardado correctamente
-                    Toast.makeText(this, "¡Bienvenido " + user.getDisplayName() + "!",
-                            Toast.LENGTH_SHORT).show();
+                .addOnSuccessListener(aVoid -> {
                     ocultarProgreso();
                     irAHomeActivity();
                 })
-                .addOnFailureListener(e->{
-                    // Error al guardar
+                .addOnFailureListener(e -> {
+                    Log.e("LOGIN", "ERROR al guardar en Firestore");
+                    Log.e("LOGIN", "Error: " + e.getMessage());
                     Toast.makeText(this, "Error al guardar usuario: " + e.getMessage(),
                             Toast.LENGTH_SHORT).show();
                     ocultarProgreso();
@@ -173,7 +182,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void irAHomeActivity() {
-        Intent intent =new Intent(LoginActivity.this,HomeActivity.class);
+        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
     }

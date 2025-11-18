@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <!-- Foto de perfil del usuario -->
+        <ImageView
+            android:id="@+id/ivUserPhoto"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:contentDescription="Foto de perfil"
+            android:src="@drawable/ic_chat_logo"
+            android:scaleType="centerCrop" />
+
+        <!-- Nombre del usuario -->
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/ivUserPhoto"
+            android:layout_alignParentEnd="true"
+            android:text="Nombre del usuario"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <!-- Email del usuario -->
+        <TextView
+            android:id="@+id/tvUserEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvUserName"
+            android:layout_toEndOf="@id/ivUserPhoto"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="4dp"
+            android:text="email@ejemplo.com"
+            android:textColor="#666666"
+            android:textSize="14sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
