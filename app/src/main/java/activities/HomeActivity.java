@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -26,11 +27,16 @@ import adapters.UserAdapter;
 import daniel.chatapp.R;
 import models.User;
 
+
+
+
 public class HomeActivity extends AppCompatActivity implements UserAdapter.OnUserClickListener {
 
     private TextView tvUserName;
     private TextView tvNoUsers;
     private ImageView btnLogout;
+    private ImageView ivProfilePic;
+
     private RecyclerView recyclerViewUsers;
 
     //Firebase
@@ -57,6 +63,7 @@ public class HomeActivity extends AppCompatActivity implements UserAdapter.OnUse
         btnLogout = findViewById(R.id.btnLogout);
         recyclerViewUsers = findViewById(R.id.recyclerViewUsers);
 
+
         recyclerViewUsers.setLayoutManager(new LinearLayoutManager(this));
         userList = new ArrayList<>();
 
@@ -79,7 +86,19 @@ public class HomeActivity extends AppCompatActivity implements UserAdapter.OnUse
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
                         String diplayname = documentSnapshot.getString("displayName");
+                        String photoUrl = documentSnapshot.getString("photoUrl");
+
                         tvUserName.setText(diplayname != null ? diplayname : "usuario");
+
+                        ivProfilePic = findViewById(R.id.ivProfilePic);
+
+                        if (photoUrl != null && !photoUrl.isEmpty()) {
+                            Glide.with(this)
+                                    .load(photoUrl)
+                                    .placeholder(R.drawable.ic_chat_logo)
+                                    .error(R.drawable.ic_chat_logo)
+                                    .into(ivProfilePic);
+                        }
 
                     }
                 })
@@ -145,7 +164,19 @@ public class HomeActivity extends AppCompatActivity implements UserAdapter.OnUse
 
     @Override
     public void onUserClick(User user) {
-        Toast.makeText(this, "Selecionaste " + user.getDisplayName(), Toast.LENGTH_SHORT);
 
+
+        if (user == null || user.getUid() == null || user.getDisplayName() == null) {
+            Toast.makeText(this, "Error: datos de usuario incompletos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Intent intent = new Intent(HomeActivity.this, ChatActivity.class);
+        intent.putExtra("receiverUserId", user.getUid());
+        intent.putExtra("receiverName", user.getDisplayName());
+        intent.putExtra("receiverPhotoUrl",user.getPhotoUrl());
+
+
+        startActivity(intent);
     }
 }

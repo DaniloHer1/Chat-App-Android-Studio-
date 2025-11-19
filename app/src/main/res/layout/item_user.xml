@@ -16,16 +16,16 @@
         android:padding="12dp">
 
         <!-- Foto de perfil del usuario -->
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivUserPhoto"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="12dp"
-            android:contentDescription="Foto de perfil"
             android:src="@drawable/ic_chat_logo"
-            android:scaleType="centerCrop" />
+            app:civ_border_width="2dp"
+            app:civ_border_color="#DDDDDD" />
 
         <!-- Nombre del usuario -->
         <TextView

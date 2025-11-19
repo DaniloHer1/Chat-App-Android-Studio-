@@ -2,6 +2,7 @@ package activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -155,6 +156,19 @@ public class LoginActivity extends AppCompatActivity {
                 account.getPhotoUrl() != null ? account.getPhotoUrl().toString() : ""
         );
 
+        Handler timeoutHandler = new Handler();
+        final boolean[] operacionCompletada = {false};
+
+        Runnable timeoutRunnable = () -> {
+            if (!operacionCompletada[0]) {
+                Log.e("LOGIN", "TIMEOUT: La operación de Firestore tardó más de 15s");
+                Toast.makeText(this, "La operación está tardando demasiado. Verifica tu conexión.",
+                        Toast.LENGTH_LONG).show();
+                ocultarProgreso();
+            }
+        };
+
+        timeoutHandler.postDelayed(timeoutRunnable, 15000);
 
         // Guardar en Firestore
         bd.collection("users")

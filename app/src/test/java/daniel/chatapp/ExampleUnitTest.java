@@ -1,4 +1,4 @@
-package daniel.chatApp;
+package daniel.chatapp;
 
 import org.junit.Test;
 

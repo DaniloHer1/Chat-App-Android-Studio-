@@ -1,5 +1,6 @@
 package adapters;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -61,7 +64,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         public void bind(User user,OnUserClickListener listener){
             tvUserName.setText(user.getDisplayName()!=null?user.getDisplayName(): "Usuario");
             tvUserEmail.setText(user.getEmail());
-            ivUserPhoto.setImageResource(R.drawable.ic_chat_logo);
+
+            if (user.getPhotoUrl()!=null && !user.getPhotoUrl().isEmpty()){
+                Glide.with(itemView.getContext())
+                        .load(user.getPhotoUrl())
+                        .placeholder(R.drawable.ic_chat_logo)
+                        .error(R.drawable.ic_chat_logo)
+                        .into(ivUserPhoto);
+            }else{
+                ivUserPhoto.setImageResource(R.drawable.ic_launcher_background);
+            }
+
 
             itemView.setOnClickListener(v->{
                 if (listener!=null){
