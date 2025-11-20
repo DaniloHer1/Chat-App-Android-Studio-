@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,7 +62,6 @@ public class ChatActivity extends AppCompatActivity {
     private List<Message> messageList;
     private MessageAdapter messageAdapter;
     private ListenerRegistration messageListener;
-
 
 
     // Sensor
@@ -119,11 +119,13 @@ public class ChatActivity extends AppCompatActivity {
         tvReceivedName.setText(receiverName);
 
         if (receiverPhotoUrl != null && !receiverPhotoUrl.isEmpty()) {
-            Glide.with(this)
-                    .load(receiverPhotoUrl)
-                    .placeholder(R.drawable.ic_chat_logo)
-                    .error(R.drawable.ic_chat_logo)
-                    .into(ivReceiverPhoto);
+            if (!isFinishing() && !isDestroyed()) {
+                Glide.with(this)
+                        .load(receiverPhotoUrl)
+                        .placeholder(R.drawable.ic_chat_logo)
+                        .error(R.drawable.ic_chat_logo)
+                        .into(ivReceiverPhoto);
+            }
         }
 
         btnSend.setEnabled(false);
@@ -267,15 +269,21 @@ public class ChatActivity extends AppCompatActivity {
         }
     }
     private void aplicarTema() {
-        if (LightSensorManager.getSavedTheme(this)) {
-            setTheme(R.style.Theme_ChatApp_Dark);
+        boolean isDark = LightSensorManager.getSavedTheme(this);
+        Log.d("HOME", "Aplicando tema con AppCompatDelegate: " + (isDark ? "OSCURO" : "CLARO"));
+
+        if (isDark) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
-            setTheme(R.style.Theme_ChatApp);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
     }
+
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d("HOME", "onResume - Iniciando escucha del sensor");
+
         if (sensorManager != null) {
             sensorManager.startListening();
         }
@@ -284,16 +292,25 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        Log.d("HOME", "onPause - Deteniendo escucha del sensor");
+
         if (sensorManager != null) {
             sensorManager.stopListening();
         }
     }
+
     private void inicializarSensor() {
+        Log.d("HOME", "Inicializando sensor de luz...");
+
         sensorManager = new LightSensorManager(this, isDarkMode -> {
+            Log.d("HOME", "Callback de cambio de tema recibido: isDarkMode=" + isDarkMode);
+
             runOnUiThread(() -> {
-                recreate();
+                Log.d("HOME", "Aplicando nuevo tema desde sensor...");
+                aplicarTema();
             });
         });
+
     }
 
 }

@@ -1,5 +1,6 @@
 package adapters;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -61,23 +63,37 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             tvUserEmail = itemView.findViewById(R.id.tvUserEmail);
         }
 
-        public void bind(User user,OnUserClickListener listener){
-            tvUserName.setText(user.getDisplayName()!=null?user.getDisplayName(): "Usuario");
+        public void bind(User user, OnUserClickListener listener) {
+            tvUserName.setText(user.getDisplayName() != null ? user.getDisplayName() : "Usuario");
             tvUserEmail.setText(user.getEmail());
 
-            if (user.getPhotoUrl()!=null && !user.getPhotoUrl().isEmpty()){
-                Glide.with(itemView.getContext())
-                        .load(user.getPhotoUrl())
-                        .placeholder(R.drawable.ic_chat_logo)
-                        .error(R.drawable.ic_chat_logo)
-                        .into(ivUserPhoto);
-            }else{
+            if (user.getPhotoUrl() != null && !user.getPhotoUrl().isEmpty()) {
+
+                // Verificar que el contexto es válido
+                Context context = itemView.getContext();
+                if (context instanceof AppCompatActivity) {
+                    AppCompatActivity activity = (AppCompatActivity) context;
+                    if (!activity.isFinishing() && !activity.isDestroyed()) {
+                        Glide.with(context)
+                                .load(user.getPhotoUrl())
+                                .placeholder(R.drawable.ic_chat_logo)
+                                .error(R.drawable.ic_chat_logo)
+                                .into(ivUserPhoto);
+                    }
+                } else {
+                    // Si no es una Activity, usar el contexto directamente
+                    Glide.with(context.getApplicationContext())
+                            .load(user.getPhotoUrl())
+                            .placeholder(R.drawable.ic_chat_logo)
+                            .error(R.drawable.ic_chat_logo)
+                            .into(ivUserPhoto);
+                }
+            } else {
                 ivUserPhoto.setImageResource(R.drawable.ic_launcher_background);
             }
 
-
-            itemView.setOnClickListener(v->{
-                if (listener!=null){
+            itemView.setOnClickListener(v -> {
+                if (listener != null) {
                     listener.onUserClick(user);
                 }
             });

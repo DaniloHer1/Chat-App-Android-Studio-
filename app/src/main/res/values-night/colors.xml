@@ -16,4 +16,5 @@
 
     <color name="divider">#3C3C3C</color>
     <color name="toolbar">#1F1F1F</color>
+    <color name="input_background">#3C3C3C</color>
 </resources>
