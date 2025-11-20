@@ -1,9 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Tema Claro -->
     <style name="Base.Theme.ChatApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">#075E54</item>
+        <item name="colorPrimaryDark">#054D44</item>
+        <item name="android:statusBarColor">#054D44</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
     <style name="Theme.ChatApp" parent="Base.Theme.ChatApp" />
+
+    <!-- Tema Oscuro -->
+    <style name="Theme.ChatApp.Dark" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">#1F1F1F</item>
+        <item name="colorPrimaryDark">#000000</item>
+        <item name="android:statusBarColor">#000000</item>
+        <item name="android:windowBackground">#121212</item>
+    </style>
 </resources>

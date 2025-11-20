@@ -26,8 +26,7 @@ import java.util.List;
 import adapters.UserAdapter;
 import daniel.chatapp.R;
 import models.User;
-
-
+import utils.LightSensorManager;
 
 
 public class HomeActivity extends AppCompatActivity implements UserAdapter.OnUserClickListener {
@@ -44,15 +43,19 @@ public class HomeActivity extends AppCompatActivity implements UserAdapter.OnUse
     private FirebaseFirestore bd;
     private FirebaseUser currentUser;
 
-    private List<User> userList;
 
+    private List<User> userList;
     private UserAdapter userAdapter;
+
+    private LightSensorManager sensorManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        aplicarTema();
         setContentView(R.layout.activity_home);
+
 
         mAuth = FirebaseAuth.getInstance();
         bd = FirebaseFirestore.getInstance();
@@ -75,8 +78,11 @@ public class HomeActivity extends AppCompatActivity implements UserAdapter.OnUse
 
         btnLogout.setOnClickListener(v -> cerrarSesion());
 
+        inicializarSensor();
+
 
     }
+
 
 
     private void cargarDatosUsuarioActual() {
@@ -174,9 +180,39 @@ public class HomeActivity extends AppCompatActivity implements UserAdapter.OnUse
         Intent intent = new Intent(HomeActivity.this, ChatActivity.class);
         intent.putExtra("receiverUserId", user.getUid());
         intent.putExtra("receiverName", user.getDisplayName());
-        intent.putExtra("receiverPhotoUrl",user.getPhotoUrl());
+        intent.putExtra("receiverPhotoUrl", user.getPhotoUrl());
 
 
         startActivity(intent);
+    }
+
+    private void aplicarTema() {
+        if (LightSensorManager.getSavedTheme(this)) {
+            setTheme(R.style.Theme_ChatApp_Dark);
+        } else {
+            setTheme(R.style.Theme_ChatApp);
+        }
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (sensorManager != null) {
+            sensorManager.startListening();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (sensorManager != null) {
+            sensorManager.stopListening();
+        }
+    }
+    private void inicializarSensor() {
+        sensorManager = new LightSensorManager(this, isDarkMode -> {
+            runOnUiThread(() -> {
+                recreate();
+            });
+        });
     }
 }

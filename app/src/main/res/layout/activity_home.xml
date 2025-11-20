@@ -4,48 +4,52 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="#FFFFFF">
 
-    <!-- Barra superior con perfil del usuario -->
+    <!-- Barra superior moderna -->
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:elevation="4dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#6F6565">
+            android:background="#2196F3">
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:paddingEnd="16dp">
 
-
-                <!-- Foto de perfil -->
+                <!-- Foto de perfil del usuario actual -->
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/ivProfilePic"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="12dp"
                     android:contentDescription="Foto de perfil"
                     android:src="@drawable/ic_chat_logo"
-                    app:civ_border_width="1dp"
+                    app:civ_border_width="2dp"
                     app:civ_border_color="#FFFFFF" />
 
-                <!-- Nombre del usuario -->
+                <!-- Nombre de la app -->
                 <TextView
                     android:id="@+id/tvUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:layout_marginStart="12dp"
                     android:layout_toEndOf="@id/ivProfilePic"
-                    android:text="Cargando..."
+                    android:layout_toStartOf="@id/btnLogout"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="FastChat"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <!-- Botón de cerrar sesión -->
@@ -55,12 +59,13 @@
                     android:layout_height="40dp"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:contentDescription="Cerrar sesión"
                     android:focusable="true"
-                    android:src="@android:drawable/ic_lock_power_off" />
+                    android:padding="8dp"
+                    android:src="@android:drawable/ic_lock_power_off"
+                    app:tint="@color/white" />
 
             </RelativeLayout>
 
@@ -74,17 +79,45 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/appBarLayout"
-        android:padding="8dp" />
+        android:background="#F5F5F5"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp" />
 
     <!-- Mensaje cuando no hay usuarios -->
-    <TextView
-        android:id="@+id/tvNoUsers"
+    <LinearLayout
+        android:id="@+id/layoutNoUsers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="No hay usuarios disponibles"
-        android:textColor="#999999"
-        android:textSize="16sp"
-        android:visibility="gone" />
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:alpha="0.3"
+            android:src="@drawable/ic_chat_logo" />
+
+        <TextView
+            android:id="@+id/tvNoUsers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="No hay usuarios disponibles"
+            android:textAlignment="center"
+            android:textColor="#999999"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Invita a tus amigos a unirse"
+            android:textAlignment="center"
+            android:textColor="#BBBBBB"
+            android:textSize="14sp" />
+
+    </LinearLayout>
 
 </RelativeLayout>
