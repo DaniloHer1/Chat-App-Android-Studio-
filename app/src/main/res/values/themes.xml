@@ -1,10 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Tema Claro -->
     <style name="Base.Theme.ChatApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">#075E54</item>
-        <item name="colorPrimaryDark">#054D44</item>
-        <item name="android:statusBarColor">#054D44</item>
-        <item name="android:windowBackground">@color/white</item>
+        <item name="colorPrimary">#2196F3</item>
+        <item name="colorPrimaryDark">#1976D2</item>
+        <item name="android:statusBarColor">#1976D2</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
     </style>
 
     <style name="Theme.ChatApp" parent="Base.Theme.ChatApp" />
@@ -14,6 +16,8 @@
         <item name="colorPrimary">#1F1F1F</item>
         <item name="colorPrimaryDark">#000000</item>
         <item name="android:statusBarColor">#000000</item>
-        <item name="android:windowBackground">#121212</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
     </style>
 </resources>

@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="@color/background">
 
     <!-- Barra superior moderna -->
     <com.google.android.material.appbar.AppBarLayout
@@ -18,7 +18,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#2196F3">
+            android:background="@color/toolbar">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -34,7 +34,7 @@
                     android:contentDescription="Foto de perfil"
                     android:src="@drawable/ic_chat_logo"
                     app:civ_border_width="2dp"
-                    app:civ_border_color="#FFFFFF" />
+                    app:civ_border_color="@color/icon_tint" />
 
                 <!-- Nombre de la app -->
                 <TextView
@@ -48,7 +48,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="FastChat"
-                    android:textColor="@color/white"
+                    android:textColor="@color/icon_tint"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -65,7 +65,7 @@
                     android:focusable="true"
                     android:padding="8dp"
                     android:src="@android:drawable/ic_lock_power_off"
-                    app:tint="@color/white" />
+                    app:tint="@color/icon_tint" />
 
             </RelativeLayout>
 
@@ -79,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/appBarLayout"
-        android:background="#F5F5F5"
+        android:background="@color/surface"
         android:clipToPadding="false"
         android:paddingBottom="8dp" />
 
@@ -106,7 +106,7 @@
             android:layout_marginTop="16dp"
             android:text="No hay usuarios disponibles"
             android:textAlignment="center"
-            android:textColor="#999999"
+            android:textColor="@color/text_secondary"
             android:textSize="16sp" />
 
         <TextView
@@ -115,7 +115,7 @@
             android:layout_marginTop="8dp"
             android:text="Invita a tus amigos a unirse"
             android:textAlignment="center"
-            android:textColor="#BBBBBB"
+            android:textColor="@color/text_tertiary"
             android:textSize="14sp" />
 
     </LinearLayout>

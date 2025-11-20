@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="80dp"
-        app:cardBackgroundColor="#0084FF"
+        app:cardBackgroundColor="@color/message_sent_bg"
         app:cardCornerRadius="12dp"
         app:cardElevation="2dp">
 
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mensaje enviado"
-                android:textColor="@color/white"
+                android:textColor="@color/message_sent_text"
                 android:textSize="16sp" />
 
             <!-- Hora del mensaje -->
@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="12:34"
-                android:textColor="#B3FFFFFF"
+                android:textColor="@color/message_sent_time"
                 android:textSize="12sp" />
 
         </LinearLayout>

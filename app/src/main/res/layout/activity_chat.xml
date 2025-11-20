@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/background">
 
     <!-- Toolbar superior -->
     <com.google.android.material.appbar.AppBarLayout
@@ -17,7 +17,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#2196F3">
+            android:background="@color/toolbar">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -36,7 +36,7 @@
                     android:focusable="true"
                     android:padding="8dp"
                     android:src="@android:drawable/ic_menu_revert"
-                    app:tint="@color/white" />
+                    app:tint="@color/icon_tint" />
 
                 <!-- Foto de perfil del otro usuario -->
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -49,7 +49,7 @@
                     android:contentDescription="Foto de perfil"
                     android:src="@drawable/ic_chat_logo"
                     app:civ_border_width="2dp"
-                    app:civ_border_color="#FFFFFF" />
+                    app:civ_border_color="@color/icon_tint" />
 
                 <!-- Nombre del otro usuario -->
                 <TextView
@@ -63,7 +63,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:text="Usuario"
-                    android:textColor="@color/white"
+                    android:textColor="@color/icon_tint"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -81,7 +81,7 @@
                     android:padding="8dp"
                     android:src="@android:drawable/ic_menu_more"
                     android:visibility="gone"
-                    app:tint="@color/white" />
+                    app:tint="@color/icon_tint" />
 
             </RelativeLayout>
 
@@ -97,13 +97,11 @@
         android:layout_centerInParent="true"
         android:text="Aún no hay mensajes\nEnvía el primero"
         android:textAlignment="center"
-        android:textColor="#999999"
+        android:textColor="@color/text_secondary"
         android:textSize="16sp"
         android:visibility="gone" />
 
     <!-- RecyclerView para los mensajes -->
-
-    <!-- Layout inferior para escribir mensajes -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewMessages"
         android:layout_width="match_parent"
@@ -114,12 +112,13 @@
         android:layout_marginBottom="-2dp"
         android:padding="8dp" />
 
+    <!-- Layout inferior para escribir mensajes -->
     <RelativeLayout
         android:id="@+id/layoutMessageInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#F5F5F5"
+        android:background="@color/input_background"
         android:padding="8dp">
 
         <!-- Campo de texto -->
@@ -131,8 +130,8 @@
             android:layout_toStartOf="@id/btnSend"
             android:background="@drawable/bg_message_input"
             android:hint="Escribe un mensaje..."
-            android:textColorHint="#999999"
-            android:textColor="#000000"
+            android:textColorHint="@color/text_hint"
+            android:textColor="@color/text_primary"
             android:textSize="16sp"
             android:maxLines="4"
             android:minHeight="48dp"
@@ -152,7 +151,7 @@
             android:focusable="true"
             android:padding="8dp"
             android:src="@android:drawable/ic_menu_send"
-            app:tint="#1E88E5" />
+            app:tint="@color/send_button" />
 
     </RelativeLayout>
 

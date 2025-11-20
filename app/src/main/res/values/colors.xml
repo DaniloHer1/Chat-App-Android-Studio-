@@ -3,19 +3,28 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- Colores para modo claro -->
-    <color name="background_light">#FFFFFF</color>
-    <color name="surface_light">#F5F5F5</color>
-    <color name="text_primary_light">#000000</color>
-    <color name="text_secondary_light">#666666</color>
+    <!-- Colores que cambian según el tema -->
+    <!-- MODO CLARO (por defecto) -->
+    <color name="background">#FFFFFF</color>
+    <color name="surface">#F5F5F5</color>
+    <color name="card_background">#FFFFFF</color>
 
-    <!-- Colores para modo oscuro -->
-    <color name="background_dark">#121212</color>
-    <color name="surface_dark">#1E1E1E</color>
-    <color name="text_primary_dark">#FFFFFF</color>
-    <color name="text_secondary_dark">#B3B3B3</color>
+    <color name="text_primary">#000000</color>
+    <color name="text_secondary">#8E8E93</color>
+    <color name="text_hint">#999999</color>
+    <color name="text_tertiary">#BBBBBB</color>
 
-    <!-- Colores neutros -->
-    <color name="toolbar_light">#2196F3</color>
-    <color name="toolbar_dark">#1F1F1F</color>
+    <color name="message_sent_bg">#0084FF</color>
+    <color name="message_sent_text">#FFFFFF</color>
+    <color name="message_sent_time">#B3FFFFFF</color>
+
+    <color name="message_received_bg">#F0F0F0</color>
+    <color name="message_received_text">#000000</color>
+    <color name="message_received_time">#757575</color>
+
+    <color name="divider">#E5E5EA</color>
+    <color name="toolbar">#2196F3</color>
+    <color name="input_background">#F5F5F5</color>
+    <color name="icon_tint">#FFFFFF</color>
+    <color name="send_button">#1E88E5</color>
 </resources>
