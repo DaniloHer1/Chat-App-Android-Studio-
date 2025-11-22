@@ -22,10 +22,9 @@
             android:id="@+id/imgLogo"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@drawable/ic_chat_logo"
+            android:src="@drawable/logo"
             android:layout_marginBottom="24dp"
-            app:tint="@color/white"
-            />
+            app:tint="@color/white" />
 
         <!-- Título -->
         <TextView

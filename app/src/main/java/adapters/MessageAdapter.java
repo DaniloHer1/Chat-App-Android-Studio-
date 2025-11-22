@@ -61,10 +61,6 @@ public class MessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Message message = messageList.get(position);
 
-        Log.d("ADAPTER", "onBindViewHolder llamado para posición: " + position);
-        Log.d("ADAPTER", "Mensaje: " + message.getMessage());
-        Log.d("ADAPTER", "Tipo: " + (holder.getItemViewType() == VIEW_SENT ? "SENT" : "RECEIVED"));
-
         if (holder.getItemViewType() == VIEW_SENT) {
             ((SentMessageViewHolder) holder).bind(message);
         } else {

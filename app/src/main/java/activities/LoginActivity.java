@@ -69,7 +69,6 @@ public class LoginActivity extends AppCompatActivity {
                         Intent data = result.getData();
                         manejarResultadoGoogleSignIn(data);
                     } else {
-
                         Toast.makeText(this, "Login cancelado o falló", Toast.LENGTH_LONG).show();
                         ocultarProgreso();
                     }
@@ -79,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
         // Listener para el boton
         btnGoogle.setOnClickListener(v -> iniciarSesionGoogle());
 
-        verificarSesion();
+
     }
 
     private void configurarGoogleSignIn() {

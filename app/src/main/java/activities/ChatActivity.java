@@ -135,17 +135,6 @@ public class ChatActivity extends AppCompatActivity {
 
     public void mostarBotonEnviar() {
         etMessage.addTextChangedListener(new android.text.TextWatcher() {
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.toString().trim().isEmpty()) {
@@ -157,6 +146,15 @@ public class ChatActivity extends AppCompatActivity {
                     btnSend.setAlpha(1.0f);
                 }
             }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+
         });
     }
 
@@ -231,11 +229,7 @@ public class ChatActivity extends AppCompatActivity {
 
                             if (dc.getType() == DocumentChange.Type.ADDED) {
                                 Message message = dc.getDocument().toObject(Message.class);
-                                Log.d("CHAT", " Mensaje agregado:");
-                                Log.d("CHAT", "  messageId: " + message.getMessageId());
-                                Log.d("CHAT", "  senderId: " + message.getSenderId());
-                                Log.d("CHAT", "  message: " + message.getMessage());
-                                Log.d("CHAT", "  timestamp: " + message.getTimestamp());
+
                                 messageList.add(message);
 
                                 int position = messageList.size() - 1;
@@ -253,7 +247,7 @@ public class ChatActivity extends AppCompatActivity {
         if (messageList.isEmpty()) {
             tvNoMessages.setVisibility(VISIBLE);
             recyclerViewMessages.setVisibility(GONE);
-        }else{
+        } else {
             tvNoMessages.setVisibility(GONE);
             recyclerViewMessages.setVisibility(VISIBLE);
         }
@@ -268,9 +262,10 @@ public class ChatActivity extends AppCompatActivity {
 
         }
     }
+
     private void aplicarTema() {
         boolean isDark = LightSensorManager.getSavedTheme(this);
-        Log.d("HOME", "Aplicando tema con AppCompatDelegate: " + (isDark ? "OSCURO" : "CLARO"));
+
 
         if (isDark) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -282,7 +277,7 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("HOME", "onResume - Iniciando escucha del sensor");
+
 
         if (sensorManager != null) {
             sensorManager.startListening();
@@ -292,7 +287,6 @@ public class ChatActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Log.d("HOME", "onPause - Deteniendo escucha del sensor");
 
         if (sensorManager != null) {
             sensorManager.stopListening();
@@ -300,13 +294,10 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     private void inicializarSensor() {
-        Log.d("HOME", "Inicializando sensor de luz...");
 
         sensorManager = new LightSensorManager(this, isDarkMode -> {
-            Log.d("HOME", "Callback de cambio de tema recibido: isDarkMode=" + isDarkMode);
 
             runOnUiThread(() -> {
-                Log.d("HOME", "Aplicando nuevo tema desde sensor...");
                 aplicarTema();
             });
         });

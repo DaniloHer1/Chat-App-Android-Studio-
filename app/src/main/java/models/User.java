@@ -4,8 +4,8 @@ import android.net.Uri;
 
 public class User {
 
-    //ID unico de Firebase
-    private String uid;
+
+    private String uid; //ID unico de Firebase
 
     private String email;
     private String displayName;

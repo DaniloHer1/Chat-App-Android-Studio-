@@ -32,7 +32,7 @@
                     android:layout_height="40dp"
                     android:layout_centerVertical="true"
                     android:contentDescription="Foto de perfil"
-                    android:src="@drawable/ic_chat_logo"
+                    android:src="@drawable/logo"
                     app:civ_border_width="2dp"
                     app:civ_border_color="@color/icon_tint" />
 

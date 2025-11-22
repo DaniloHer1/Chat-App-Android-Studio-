@@ -52,12 +52,11 @@ public class HomeActivity extends AppCompatActivity implements UserAdapter.OnUse
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // CRÍTICO: Aplicar el tema usando AppCompatDelegate
+
         aplicarTema();
 
         setContentView(R.layout.activity_home);
 
-        Log.d("HOME", "=== onCreate iniciado ===");
 
         mAuth = FirebaseAuth.getInstance();
         bd = FirebaseFirestore.getInstance();
@@ -80,30 +79,15 @@ public class HomeActivity extends AppCompatActivity implements UserAdapter.OnUse
 
         btnLogout.setOnClickListener(v -> cerrarSesion());
 
-        // Código temporal de prueba - toca la foto para cambiar tema
-        ivProfilePic.setOnClickListener(v -> {
-            Log.d("HOME", "=== CLICK EN FOTO DE PERFIL ===");
-            SharedPreferences prefs = getSharedPreferences("theme", MODE_PRIVATE);
-            boolean currentTheme = prefs.getBoolean("is_dark_mode", false);
-            boolean newTheme = !currentTheme;
 
-            Log.d("HOME", "Tema actual: " + (currentTheme ? "OSCURO" : "CLARO"));
-            Log.d("HOME", "Nuevo tema: " + (newTheme ? "OSCURO" : "CLARO"));
-
-            prefs.edit().putBoolean("is_dark_mode", newTheme).apply();
-
-            // Aplicar el tema usando AppCompatDelegate
-            aplicarTema();
-        });
 
         inicializarSensor();
 
-        Log.d("HOME", "=== onCreate completado ===");
     }
 
     private void aplicarTema() {
+
         boolean isDark = LightSensorManager.getSavedTheme(this);
-        Log.d("HOME", "Aplicando tema con AppCompatDelegate: " + (isDark ? "OSCURO" : "CLARO"));
 
         if (isDark) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -118,7 +102,6 @@ public class HomeActivity extends AppCompatActivity implements UserAdapter.OnUse
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (isFinishing() || isDestroyed()) {
-                        Log.w("HOME", "Actividad destruida, cancelando carga de imagen");
                         return;
                     }
 

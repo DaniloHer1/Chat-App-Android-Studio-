@@ -95,12 +95,6 @@ public class LightSensorManager implements SensorEventListener {
 
 
             if (sholdBeDark != isDarkMode && enoughTimePassed) {
-                Log.d("LIGHT_SENSOR", "═════════════════════════════════");
-                Log.d("LIGHT_SENSOR", "CAMBIO DE TEMA DETECTADO");
-                Log.d("LIGHT_SENSOR", "  Nivel de luz: " + lightLevel + " lux");
-                Log.d("LIGHT_SENSOR", "  Modo anterior: " + (isDarkMode ? "OSCURO" : "CLARO"));
-                Log.d("LIGHT_SENSOR", "  Modo nuevo: " + (sholdBeDark ? "OSCURO" : "CLARO"));
-                Log.d("LIGHT_SENSOR", "═════════════════════════════════");
 
                 isDarkMode = sholdBeDark;
                 lastChangeTime = currentTime;
